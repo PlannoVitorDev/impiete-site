@@ -1,0 +1,241 @@
+.impiete-footer {
+  position: relative;
+  margin-top: auto;
+  padding: 4.25rem 2rem 2.25rem;
+  background:
+    radial-gradient(
+      ellipse 60% 55% at 50% 0%,
+      rgba(63, 110, 161, 0.22),
+      transparent 70%
+    ),
+    linear-gradient(180deg, var(--impiete-navy) 0%, var(--impiete-ink) 100%);
+  color: var(--impiete-mist);
+  border-top: 1px solid rgba(167, 202, 232, 0.22);
+}
+
+.impiete-footer__container {
+  width: min(1140px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.impiete-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.75fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+/* ---------- Identidade ---------- */
+.impiete-footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.15rem;
+}
+
+.impiete-footer__brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: var(--impiete-highlight);
+  border-radius: 9999px;
+}
+
+.impiete-footer__brand-link:focus-visible {
+  outline: 2px solid var(--impiete-sky);
+  outline-offset: 4px;
+}
+
+.impiete-footer__seal {
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0.42rem;
+  border-radius: 50%;
+  background: var(--impiete-highlight);
+  border: 1.5px solid var(--impiete-sky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+}
+
+.impiete-footer__seal-img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.impiete-footer__wordmark {
+  font-family: var(--heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: var(--impiete-highlight);
+}
+
+.impiete-footer__tagline {
+  max-width: 38ch;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--impiete-sky);
+}
+
+/* ---------- Colunas ---------- */
+.impiete-footer__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.impiete-footer__heading {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--impiete-steel);
+}
+
+.impiete-footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.impiete-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--impiete-paper);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.impiete-footer__link:hover {
+  color: var(--impiete-sky);
+}
+
+.impiete-footer__link:focus-visible {
+  outline: 2px solid var(--impiete-sky);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.impiete-footer__pill {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.16rem 0.55rem;
+  border-radius: 9999px;
+  background: rgba(167, 202, 232, 0.16);
+  border: 1px solid rgba(167, 202, 232, 0.35);
+  color: var(--impiete-highlight);
+}
+
+.impiete-footer__muted {
+  font-size: 0.92rem;
+  color: rgba(167, 202, 232, 0.6);
+}
+
+.impiete-footer__top-btn {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.05rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(167, 202, 232, 0.3);
+  background: rgba(212, 230, 246, 0.08);
+  color: var(--impiete-highlight);
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.impiete-footer__top-btn svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.impiete-footer__top-btn:hover {
+  background: var(--impiete-mist);
+  border-color: var(--impiete-mist);
+  color: var(--impiete-ink);
+  transform: translateY(-2px);
+}
+
+.impiete-footer__top-btn:focus-visible {
+  outline: 2px solid var(--impiete-sky);
+  outline-offset: 3px;
+}
+
+/* ---------- Barra inferior ---------- */
+.impiete-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(167, 202, 232, 0.16);
+}
+
+.impiete-footer__colophon,
+.impiete-footer__copy {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(167, 202, 232, 0.72);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impiete-footer__link,
+  .impiete-footer__top-btn {
+    transition: none;
+  }
+
+  .impiete-footer__top-btn:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 820px) {
+  .impiete-footer {
+    padding: 3.25rem 1.25rem 2rem;
+  }
+
+  .impiete-footer__top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .impiete-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,92 @@
+:root {
+  /* Paleta extraída da Capa Impiete Vol. 1 e do Selo Dionysos */
+  --impiete-ink: #090e14;
+  --impiete-navy: #122438;
+  --impiete-prussian: #1e3b5c;
+  --impiete-cobalt: #3f6ea1;
+  --impiete-steel: #6998c7;
+  --impiete-sky: #a7cae8;
+  --impiete-mist: #d4e6f6;
+  --impiete-paper: #eef5fc;
+  --impiete-highlight: #f7fbff;
+
+  /* Tokens semânticos do tema */
+  --bg: var(--impiete-mist);
+  --bg-elevated: var(--impiete-mist);
+  --surface: rgba(212, 230, 246, 0.88);
+  --surface-strong: rgba(212, 230, 246, 0.96);
+  --text: #24364a;
+  --text-h: var(--impiete-ink);
+  --text-muted: #4b6580;
+  --border: rgba(30, 59, 92, 0.18);
+  --border-strong: rgba(18, 36, 56, 0.35);
+
+  --accent: var(--impiete-prussian);
+  --accent-bright: var(--impiete-cobalt);
+  --accent-bg: rgba(63, 110, 161, 0.13);
+  --accent-border: rgba(63, 110, 161, 0.45);
+  --code-bg: var(--impiete-mist);
+  --social-bg: rgba(212, 230, 246, 0.55);
+
+  --shadow:
+    0 12px 32px -8px rgba(9, 14, 20, 0.16),
+    0 4px 12px -2px rgba(30, 59, 92, 0.1);
+  --shadow-float:
+    0 18px 40px -10px rgba(9, 14, 20, 0.24),
+    0 6px 16px -4px rgba(30, 59, 92, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+
+  /* Tipografia editorial */
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Georgia', 'Times New Roman', Times, serif;
+  --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  font: 17px/155% var(--sans);
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(167, 202, 232, 0.25), transparent 42%),
+    radial-gradient(circle at 85% 25%, rgba(63, 110, 161, 0.14), transparent 48%),
+    var(--bg);
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}

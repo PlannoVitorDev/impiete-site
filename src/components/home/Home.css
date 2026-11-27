@@ -1,0 +1,590 @@
+.impiete-home {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5.5rem clamp(1.25rem, 4vw, 3.5rem) 5.5rem;
+  overflow: hidden;
+  background: var(--bg);
+  scroll-margin-top: 0;
+}
+
+.impiete-home__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.impiete-home__banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.01);
+  animation: impiete-banner-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Marca d'água do Selo atrás da composição */
+.impiete-home__seal-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.impiete-home__seal-ring {
+  grid-area: 1 / 1;
+  width: min(84vh, 88vw);
+  height: min(84vh, 88vw);
+  border-radius: 50%;
+  border: 1px dashed rgba(18, 36, 56, 0.22);
+  background: radial-gradient(
+    circle at center,
+    rgba(247, 251, 255, 0.22) 0%,
+    rgba(212, 230, 246, 0.08) 52%,
+    transparent 74%
+  );
+  animation: impiete-seal-orbit 64s linear infinite;
+}
+
+.impiete-home__seal-watermark {
+  grid-area: 1 / 1;
+  height: 80vh;
+  max-height: 86vw;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+  filter: contrast(1.08);
+  -webkit-mask-image: radial-gradient(
+    ellipse 72% 68% at center,
+    #000 58%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 72% 68% at center,
+    #000 58%,
+    transparent 100%
+  );
+  animation:
+    impiete-seal-enter 1.4s cubic-bezier(0.22, 1, 0.36, 1) both,
+    impiete-seal-breathe 16s ease-in-out 1.4s infinite;
+}
+
+/* Halo claro atrás do texto, à direita */
+.impiete-home__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 34% 48% at 78% 48%,
+    rgba(212, 230, 246, 0.42),
+    transparent 70%
+  );
+}
+
+/* Transição suave na base para o fundo do site */
+.impiete-home__fade-bottom {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 20%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+/* Container centralizado tanto em telas largas quanto com barra lateral */
+.impiete-home__inner {
+  position: relative;
+  z-index: 1;
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(250px, 0.85fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3.5vw, 4rem);
+}
+
+/* ---------- Revista flutuando em 3D ---------- */
+.impiete-home__showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 1.8vw, 1.85rem);
+  perspective: 1600px;
+  perspective-origin: 50% 42%;
+  min-width: 0;
+}
+
+.impiete-home__float {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: impiete-home-bob 5.6s ease-in-out infinite;
+}
+
+.impiete-home__float--cover {
+  flex: 0 1 29%;
+  max-width: 245px;
+  z-index: 2;
+  animation-delay: -1.8s;
+}
+
+.impiete-home__float--spread {
+  flex: 0 1 67%;
+  max-width: 560px;
+  z-index: 1;
+  animation-delay: 0s;
+}
+
+.impiete-home__item {
+  --thick: 8px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impiete-home__item--cover {
+  aspect-ratio: 1409 / 2000;
+  transform: rotateX(6deg) rotateY(14deg) rotateZ(-4.5deg);
+}
+
+.impiete-home__float--cover:hover .impiete-home__item--cover {
+  transform: rotateX(3deg) rotateY(6deg) rotateZ(-2deg) scale(1.03);
+}
+
+.impiete-home__item--spread {
+  aspect-ratio: 2818 / 2000;
+  transform: rotateX(7deg) rotateY(-8deg) rotateZ(1deg);
+}
+
+.impiete-home__float--spread:hover .impiete-home__item--spread {
+  transform: rotateX(3deg) rotateY(-3deg) rotateZ(0deg) scale(1.02);
+}
+
+.impiete-home__magazine {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  transform: translateZ(calc(var(--thick) / 2));
+  background: var(--impiete-mist);
+  box-shadow:
+    0 32px 62px -22px rgba(9, 14, 20, 0.58),
+    0 14px 26px -12px rgba(18, 36, 56, 0.38),
+    0 0 0 1px rgba(18, 36, 56, 0.12);
+}
+
+.impiete-home__magazine--cover {
+  border-radius: 3px 6px 6px 3px;
+}
+
+.impiete-home__magazine--spread {
+  border-radius: 4px;
+}
+
+.impiete-home__magazine-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Vinco central realista na revista aberta */
+.impiete-home__crease {
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  width: 7%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(9, 14, 20, 0.14) 36%,
+    rgba(9, 14, 20, 0.32) 49%,
+    rgba(255, 255, 255, 0.28) 52%,
+    rgba(9, 14, 20, 0.1) 66%,
+    transparent 100%
+  );
+}
+
+/* Brilho diagonal sutil sobre o papel */
+.impiete-home__sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    transparent 38%,
+    rgba(9, 14, 20, 0.08) 100%
+  );
+}
+
+/* Espessura 3D da lombada e das páginas */
+.impiete-home__edge {
+  position: absolute;
+  pointer-events: none;
+}
+
+.impiete-home__edge--spine {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--thick);
+  transform: translateX(-50%) rotateY(-90deg);
+  background: linear-gradient(
+    90deg,
+    var(--impiete-navy),
+    var(--impiete-prussian),
+    var(--impiete-navy)
+  );
+}
+
+.impiete-home__edge--pages {
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: var(--thick);
+  transform: translateX(-50%) rotateY(90deg);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--impiete-highlight) 0 1px,
+      #bcd3ea 1px 2px
+    ),
+    var(--impiete-mist);
+}
+
+.impiete-home__edge--bottom {
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 6px;
+  transform: translateY(-50%) rotateX(-90deg);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      var(--impiete-highlight) 0 1px,
+      #bcd3ea 1px 2px
+    ),
+    var(--impiete-mist);
+}
+
+/* Sombra projetada no plano abaixo da revista */
+.impiete-home__floor {
+  position: absolute;
+  left: 50%;
+  bottom: -1.75rem;
+  width: 88%;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(9, 14, 20, 0.44),
+    transparent 70%
+  );
+  filter: blur(5px);
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: impiete-home-floor-bob 5.6s ease-in-out infinite;
+  animation-delay: inherit;
+}
+
+.impiete-home__floor--spread {
+  width: 92%;
+  bottom: -1.55rem;
+}
+
+/* Título + texto ao lado direito da revista aberta */
+.impiete-home__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.65rem, 1.1vw, 1.15rem);
+  color: var(--impiete-ink);
+  min-width: 0;
+}
+
+.impiete-home__kicker {
+  font-family: var(--mono);
+  font-size: clamp(0.7rem, 0.78vw, 0.84rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--impiete-navy);
+  animation: impiete-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+.impiete-home__title {
+  font-family: var(--heading);
+  font-size: clamp(2.5rem, 4.8vw, 5.25rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  color: var(--impiete-ink);
+  text-shadow: 0 2px 18px rgba(212, 230, 246, 0.35);
+  animation: impiete-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+}
+
+.impiete-home__rule {
+  width: clamp(2.5rem, 4vw, 4.25rem);
+  height: 2px;
+  background: var(--impiete-navy);
+  transform-origin: left center;
+  animation: impiete-rule-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+.impiete-home__text {
+  width: 100%;
+  max-width: 40ch;
+  font-size: clamp(0.96rem, 1.15vw, 1.18rem);
+  line-height: 1.65;
+  color: var(--impiete-navy);
+  animation: impiete-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
+}
+
+/* Botão de rolagem centralizado no final da página */
+.impiete-home__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.15rem, 2.5svh, 2.25rem);
+  z-index: 2;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 50%;
+  color: var(--impiete-navy);
+  background: rgba(212, 230, 246, 0.85);
+  border: 1px solid rgba(30, 59, 92, 0.25);
+  box-shadow: 0 10px 24px -10px rgba(9, 14, 20, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-decoration: none;
+  animation: impiete-fade-in 0.8s ease 1.3s both;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.impiete-home__scroll::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 59, 92, 0.3);
+  animation: impiete-pulse-ring 2.4s ease-out 1.8s infinite;
+  pointer-events: none;
+}
+
+.impiete-home__scroll:hover {
+  background: var(--impiete-navy);
+  color: var(--impiete-highlight);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.impiete-home__scroll:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: 4px;
+}
+
+.impiete-home__scroll-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  animation: impiete-arrow-bounce 1.8s ease-in-out infinite;
+}
+
+/* Animações */
+@keyframes impiete-home-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes impiete-home-floor-bob {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(-50%) scaleX(0.92);
+    opacity: 0.65;
+  }
+}
+
+@keyframes impiete-seal-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.93);
+  }
+  to {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+@keyframes impiete-seal-breathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(-1.2deg);
+  }
+  50% {
+    transform: scale(1.022) rotate(1.2deg);
+  }
+}
+
+@keyframes impiete-seal-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes impiete-banner-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+}
+
+@keyframes impiete-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes impiete-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes impiete-rule-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes impiete-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes impiete-pulse-ring {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impiete-home__banner,
+  .impiete-home__seal-ring,
+  .impiete-home__seal-watermark,
+  .impiete-home__float,
+  .impiete-home__floor,
+  .impiete-home__kicker,
+  .impiete-home__title,
+  .impiete-home__rule,
+  .impiete-home__text,
+  .impiete-home__scroll,
+  .impiete-home__scroll::before,
+  .impiete-home__scroll-icon {
+    animation: none;
+  }
+
+  .impiete-home__item {
+    transition: none;
+  }
+}
+
+/* Telas menores ou janelas estreitas (ex.: com barra lateral) */
+@media (max-width: 960px) {
+  .impiete-home {
+    padding: 5.5rem 1.25rem 5.75rem;
+  }
+
+  .impiete-home__glow {
+    background: radial-gradient(
+      ellipse 70% 45% at 50% 72%,
+      rgba(212, 230, 246, 0.45),
+      transparent 72%
+    );
+  }
+
+  .impiete-home__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 2.25rem;
+  }
+
+  .impiete-home__showcase {
+    width: min(640px, 100%);
+    gap: 0.85rem;
+  }
+
+  .impiete-home__content {
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .impiete-home__title {
+    font-size: clamp(2.25rem, 7.5vw, 3.4rem);
+  }
+
+  .impiete-home__rule {
+    transform-origin: center;
+  }
+
+  .impiete-home__text {
+    max-width: 48ch;
+    font-size: 0.98rem;
+  }
+}

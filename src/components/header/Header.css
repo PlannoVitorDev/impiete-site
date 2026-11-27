@@ -1,0 +1,326 @@
+@property --impiete-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.impiete-header {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: min(1040px, calc(100vw - 2rem));
+  transition:
+    top 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impiete-header--scrolled {
+  top: 0.65rem;
+  width: min(940px, calc(100vw - 2rem));
+}
+
+/* Moldura com borda luminosa giratória nas cores da revista */
+.impiete-header__frame {
+  position: relative;
+  border-radius: 9999px;
+  animation: impiete-header-drop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.impiete-header__frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--impiete-angle),
+    rgba(30, 59, 92, 0.15) 0deg,
+    var(--impiete-cobalt) 70deg,
+    var(--impiete-highlight) 110deg,
+    var(--impiete-steel) 150deg,
+    rgba(30, 59, 92, 0.15) 220deg,
+    rgba(30, 59, 92, 0.15) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: impiete-border-spin 7s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.impiete-header__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.55rem 0.6rem 0.55rem 1.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(212, 230, 246, 0.82);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    0 14px 34px -10px rgba(9, 14, 20, 0.28),
+    0 3px 10px -3px rgba(30, 59, 92, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition:
+    padding 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease;
+}
+
+/* Brilho que atravessa a cápsula periodicamente */
+.impiete-header__bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -30%;
+  width: 22%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: skewX(-20deg) translateX(-200%);
+  animation: impiete-sheen 9s ease-in-out 1.4s infinite;
+  pointer-events: none;
+}
+
+.impiete-header--scrolled .impiete-header__bar {
+  padding: 0.4rem 0.45rem 0.4rem 1.3rem;
+  background: rgba(212, 230, 246, 0.92);
+}
+
+/* Logo tipográfico animado */
+.impiete-header__logo {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.2rem 0.1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+}
+
+.impiete-header__logo:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: 4px;
+}
+
+.impiete-header__logo-text {
+  display: inline-flex;
+  font-family: var(--heading);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+.impiete-header__logo-char {
+  display: inline-block;
+  color: var(--impiete-ink);
+  animation: impiete-char-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(0.35s + var(--i) * 0.06s);
+}
+
+.impiete-header__logo:hover .impiete-header__logo-char,
+.impiete-header__logo:focus-visible .impiete-header__logo-char {
+  animation: impiete-char-wave 0.9s ease-in-out both;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+/* Navegação com pílula deslizante */
+.impiete-header__nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.impiete-header__list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.impiete-header__indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    135deg,
+    var(--impiete-prussian),
+    var(--impiete-navy)
+  );
+  box-shadow:
+    0 6px 16px -6px rgba(9, 14, 20, 0.55),
+    inset 0 1px 0 rgba(167, 202, 232, 0.35);
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
+    width 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
+    opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.impiete-header__link {
+  position: relative;
+  display: inline-block;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--impiete-navy);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.impiete-header__link--lit {
+  color: var(--impiete-highlight);
+}
+
+.impiete-header__link:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: 2px;
+}
+
+/* Barra de progresso de leitura */
+.impiete-header__progress {
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    var(--impiete-steel),
+    var(--impiete-cobalt),
+    var(--impiete-prussian)
+  );
+  transform-origin: left center;
+  transition: transform 0.15s linear;
+  pointer-events: none;
+}
+
+/* Animações */
+@keyframes impiete-border-spin {
+  to {
+    --impiete-angle: 360deg;
+  }
+}
+
+@keyframes impiete-header-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-140%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes impiete-sheen {
+  0%,
+  70% {
+    transform: skewX(-20deg) translateX(-200%);
+  }
+  100% {
+    transform: skewX(-20deg) translateX(750%);
+  }
+}
+
+@keyframes impiete-char-rise {
+  from {
+    opacity: 0;
+    transform: translateY(70%) rotate(8deg);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes impiete-char-wave {
+  0%,
+  100% {
+    transform: translateY(0);
+    color: var(--impiete-ink);
+  }
+  40% {
+    transform: translateY(-28%);
+    color: var(--impiete-cobalt);
+  }
+  70% {
+    transform: translateY(6%);
+    color: var(--impiete-prussian);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impiete-header,
+  .impiete-header__bar,
+  .impiete-header__indicator,
+  .impiete-header__progress {
+    transition: none;
+  }
+
+  .impiete-header__frame,
+  .impiete-header__frame::before,
+  .impiete-header__bar::after,
+  .impiete-header__logo-char,
+  .impiete-header__logo:hover .impiete-header__logo-char {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .impiete-header,
+  .impiete-header--scrolled {
+    top: 0.75rem;
+    width: calc(100vw - 1.25rem);
+  }
+
+  .impiete-header__bar,
+  .impiete-header--scrolled .impiete-header__bar {
+    gap: 0.5rem;
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
+  }
+
+  .impiete-header__logo-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+
+  .impiete-header__list {
+    gap: 0.1rem;
+  }
+
+  .impiete-header__link {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.82rem;
+  }
+
+  .impiete-header__progress {
+    left: 1rem;
+    right: 1rem;
+  }
+}

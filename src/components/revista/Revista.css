@@ -1,0 +1,592 @@
+.impiete-revista {
+  --header-offset: 4.75rem;
+
+  padding: var(--header-offset) 2rem 5.5rem;
+  background: var(--bg);
+  scroll-margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+/* Centraliza o card considerando o espaço ocupado pelo header fixo */
+.impiete-revista__showcase-area {
+  width: 100%;
+  min-height: calc(100svh - var(--header-offset));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0;
+  scroll-margin-top: var(--header-offset);
+}
+
+.impiete-revista__container {
+  width: min(1140px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: start;
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+  border-radius: 1.5rem;
+  background: var(--impiete-paper);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Galeria (hub à esquerda + preview) ---------- */
+.impiete-revista__gallery {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 1.15rem;
+  align-items: start;
+}
+
+.impiete-revista__hub {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.impiete-revista__thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  border-radius: 0.75rem;
+  background: var(--impiete-highlight);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.impiete-revista__thumb img {
+  width: 100%;
+  aspect-ratio: 1409 / 2000;
+  object-fit: cover;
+  border-radius: 0.45rem;
+  display: block;
+}
+
+.impiete-revista__thumb-label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.impiete-revista__thumb:hover {
+  border-color: var(--impiete-cobalt);
+}
+
+.impiete-revista__thumb.is-selected {
+  border-color: var(--impiete-navy);
+  box-shadow: 0 6px 16px -6px rgba(18, 36, 56, 0.35);
+}
+
+.impiete-revista__thumb.is-selected .impiete-revista__thumb-label {
+  color: var(--impiete-ink);
+}
+
+.impiete-revista__thumb:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: 2px;
+}
+
+.impiete-revista__preview-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.impiete-revista__preview {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--impiete-mist);
+  cursor: zoom-in;
+  box-shadow:
+    0 20px 42px -18px rgba(9, 14, 20, 0.35),
+    0 6px 14px -6px rgba(18, 36, 56, 0.2);
+}
+
+.impiete-revista__preview.is-hidden {
+  opacity: 0;
+}
+
+.impiete-revista__preview:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: 3px;
+}
+
+.impiete-revista__preview-img {
+  width: 100%;
+  aspect-ratio: 1409 / 2000;
+  object-fit: cover;
+  display: block;
+}
+
+.impiete-revista__zoom-hint {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(247, 251, 255, 0.92);
+  border: 1px solid rgba(30, 59, 92, 0.18);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--impiete-navy);
+  box-shadow: 0 4px 12px -4px rgba(9, 14, 20, 0.22);
+}
+
+.impiete-revista__zoom-hint svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* ---------- Detalhes do produto à direita ---------- */
+.impiete-revista__details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.impiete-revista__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.impiete-revista__badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.7rem;
+  border-radius: 9999px;
+  color: var(--impiete-prussian);
+  background: var(--impiete-mist);
+  border: 1px solid var(--border);
+}
+
+.impiete-revista__badge--free {
+  color: var(--impiete-highlight);
+  background: var(--impiete-navy);
+  border-color: var(--impiete-navy);
+}
+
+.impiete-revista__title {
+  font-family: var(--heading);
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--impiete-ink);
+}
+
+.impiete-revista__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+}
+
+.impiete-revista__price {
+  font-family: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--impiete-navy);
+}
+
+.impiete-revista__price-note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.impiete-revista__description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.impiete-revista__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.impiete-revista__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 9999px;
+  border: none;
+  background: var(--impiete-navy);
+  color: var(--impiete-highlight);
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -10px rgba(9, 14, 20, 0.45);
+  transition: background-color 0.2s ease;
+}
+
+.impiete-revista__cta:hover {
+  background: var(--impiete-prussian);
+}
+
+.impiete-revista__cta:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: 3px;
+}
+
+.impiete-revista__cta-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.impiete-revista__cta-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.impiete-revista__specs {
+  width: 100%;
+  margin: 0.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1.5rem;
+}
+
+.impiete-revista__spec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.impiete-revista__spec dt {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.impiete-revista__spec dd {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--impiete-ink);
+}
+
+/* ---------- Grid de 3 colunas com as edições ---------- */
+.impiete-revista__editions {
+  width: min(1140px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.impiete-revista__editions-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.impiete-revista__editions-title {
+  font-family: var(--heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--impiete-ink);
+}
+
+.impiete-revista__editions-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.impiete-revista__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.impiete-revista__card {
+  border-radius: 1.1rem;
+  background: var(--impiete-paper);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.impiete-revista__card.is-active {
+  border-color: var(--impiete-navy);
+  box-shadow: var(--shadow);
+}
+
+.impiete-revista__card-btn {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  cursor: pointer;
+}
+
+.impiete-revista__card-btn:focus-visible {
+  outline: 2px solid var(--impiete-cobalt);
+  outline-offset: -2px;
+}
+
+.impiete-revista__card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1409 / 2000;
+  border-radius: 0.65rem;
+  overflow: hidden;
+  background: var(--impiete-mist);
+  border: 1px solid var(--border);
+}
+
+.impiete-revista__card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.impiete-revista__card-tag {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(247, 251, 255, 0.92);
+  color: var(--impiete-navy);
+  border: 1px solid rgba(30, 59, 92, 0.18);
+}
+
+.impiete-revista__card-tag.is-latest {
+  background: var(--impiete-navy);
+  color: var(--impiete-highlight);
+  border-color: var(--impiete-navy);
+}
+
+.impiete-revista__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.impiete-revista__card-title {
+  margin: 0;
+  font-family: var(--heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--impiete-ink);
+}
+
+.impiete-revista__card-meta {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.impiete-revista__card--upcoming {
+  background: rgba(238, 245, 252, 0.45);
+  border: 1.5px dashed var(--border-strong);
+}
+
+.impiete-revista__card-upcoming-box {
+  height: 100%;
+  min-height: 14rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.55rem;
+}
+
+.impiete-revista__card--upcoming .impiete-revista__card-tag {
+  position: static;
+}
+
+/* ---------- Lightbox com blur no fundo e crescimento suave de 1s ---------- */
+.impiete-revista__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  background: rgba(9, 14, 20, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition:
+    background-color 1s ease,
+    backdrop-filter 1s ease,
+    -webkit-backdrop-filter 1s ease;
+}
+
+.impiete-revista__lightbox[data-state='open'] {
+  background: rgba(9, 14, 20, 0.48);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.impiete-revista__close {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 2010;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 251, 255, 0.35);
+  background: rgba(18, 36, 56, 0.75);
+  color: var(--impiete-highlight);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.4s ease,
+    background-color 0.2s ease;
+}
+
+.impiete-revista__lightbox[data-state='open'] .impiete-revista__close {
+  opacity: 1;
+}
+
+.impiete-revista__close:hover {
+  background: var(--impiete-navy);
+}
+
+.impiete-revista__close:focus-visible {
+  outline: 2px solid var(--impiete-highlight);
+  outline-offset: 2px;
+}
+
+.impiete-revista__modal-figure {
+  margin: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 32px 72px -18px rgba(0, 0, 0, 0.65);
+  transform-origin: center center;
+  transform: translate3d(var(--from-x, 0px), var(--from-y, 0px), 0)
+    scale(var(--from-scale, 1));
+  will-change: transform;
+}
+
+.impiete-revista__lightbox[data-state='open'] .impiete-revista__modal-figure {
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impiete-revista__lightbox[data-state='closing'] .impiete-revista__modal-figure {
+  transform: translate3d(var(--from-x, 0px), var(--from-y, 0px), 0)
+    scale(var(--from-scale, 1));
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impiete-revista__modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impiete-revista__lightbox,
+  .impiete-revista__modal-figure,
+  .impiete-revista__close {
+    transition: none;
+  }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .impiete-revista {
+    --header-offset: 4.25rem;
+    padding: var(--header-offset) 1.25rem 4rem;
+    gap: 2.5rem;
+  }
+
+  .impiete-revista__showcase-area {
+    min-height: auto;
+    padding: 1rem 0 0;
+  }
+
+  .impiete-revista__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .impiete-revista__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .impiete-revista__hub {
+    flex-direction: row;
+    justify-content: center;
+    order: 2;
+  }
+
+  .impiete-revista__thumb {
+    width: 5.25rem;
+  }
+
+  .impiete-revista__preview-wrap {
+    order: 1;
+  }
+
+  .impiete-revista__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 580px) {
+  .impiete-revista__grid {
+    grid-template-columns: 1fr;
+  }
+}
